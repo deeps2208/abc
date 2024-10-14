@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fade and Zoom Images on Scroll</title>
+  <style>
+    body {
+      margin: 0;
+      height: 300vh; /* Enough height for scrolling */
+      background-color: #f4f4f4;
+    }
+
+    .nameforme {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh; /* Full viewport height */
+      overflow: hidden; /* Hide overflow to avoid visual glitches */
+    }
+
+    img {
+      height: auto;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    /* Initial styles for the first image (from the left) */
+    .fade-in.left {
+      transform: translateX(-600px) scale(0.8); /* Start off-screen to the left and zoomed out */
+    }
+
+    /* Initial styles for the second image (from the right) */
+    .fade-in.right {
+      transform: translateX(600px) scale(0.8); /* Start off-screen to the right and zoomed out */
+    }
+
+    .fade-in.active {
+      opacity: 1;
+      transform: translateX(0) scale(1); /* Move to the center and zoom in */
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: translateX(600px) scale(0.8); /* Move off-screen to the right and zoom out */
+    }
+
+    /* Fade out for the first image */
+    .fade-out.left {
+      transform: translateX(-600px) scale(0.8); /* Move off-screen to the left */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nameforme">
+    <img src="Hiim.svg" style="width: 400px;" class="fade-in left"> <!-- First image coming from the left -->
+  </div>
+
+  <div class="nameforme">
+    <img src="deepikaa.svg" style="width: 1400px;" class="fade-in right"> <!-- Second image coming from the right -->
+  </div>
+
+  <script>
+    // IntersectionObserver to detect when the images come into view or out of view
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active"); // Add active class when image is in view
+            entry.target.classList.remove("fade-out"); // Remove fade-out class
+          } else {
+            entry.target.classList.add("fade-out"); // Add fade-out class when out of view
+            entry.target.classList.remove("active"); // Remove active class
+          }
+        });
+      });
+
+      const images = document.querySelectorAll(".fade-in");
+      images.forEach(image => {
+        observer.observe(image);
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+            <style>
+
+                
+.afacad-light {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                }
+                .afacad-bold {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                }
+        body {
+                    background-color: rgb(255, 251, 244);
+                    
+                    margin-top: 20px;
+                }
+        .calistoga-regular {
+                font-family: "Calistoga", serif;
+                font-weight: 400;
+                font-style: normal;
+                }
+
+                /* General reset */
+
+
+
+
+header {
+            background-color: rgb(255, 251, 244);
+            padding: 10px 20px;
+            position: fixed; /* Make the navbar stay on top */
+            top: 0;
+            width:100%;
+            z-index: 1000; 
+            
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px; /* Adjust logo size */
+            height: auto;
+            padding-top: 10px;
+            margin-left: 40px;
+        }
+
+        .nav-links {
+            
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            
+        }
+
+        .nav-links a {
+            color: #2D3B66;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E5887A;
+            font-weight: 700;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 4px;
+            background-color: #2D3B66;
+            border-radius: 5px;
+            margin: 3px;
+            transition: all 0.15s ease;
+            
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: -80px;
+                top: 70px;
+                height: 90vh;
+                width: 100%;
+                
+                background-color: rgb(255,252,244);
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-right: 30px;
+            }
+
+            .nav-active {
+                transform: translateX(0);
+            }
+        }
+
+
+          /* Styling for toggle */
+          .toggle-container {
+            position: absolute;
+            bottom: 50px;
+            right: 120px;
+            z-index: 1000;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* This centers both the toggle and text */
+        }
+
+        /* Styling the toggle switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #D9D9D9;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #84B78F;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #D9D9D9;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            background-color: #E5887A;
+        }
+
+        .toggle-text {
+            margin-top: 10px; /* Add space between the toggle and text */
+            text-align: center;
+            font-family: 'Afacad', sans-serif;
+            font-size: 18px; /* Adjust font size as per need */
+            color: #333; /* Set the text color */
+        }
+
+        /* Hide the default link */
+        .toggle-link {
+            display: none; /* Hide the link */
+        }
+
+        /* Show link when the checkbox is checked */
+        input:checked ~ .toggle-link {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #2196F3; /* Link color */
+            font-size: 18px; /* Font size for link */
+        }
+
+/* Contact Section */
+.contact-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Contact Form */
+.contact-form {
+    background-color: #d4f1c4;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    position: relative;
+}
+
+/* Form Heading */
+.form-heading {
+    font-size: 2rem;
+    color: #324056;
+    margin-bottom: 10px;
+}
+
+.form-subheading {
+    font-size: 1.2rem;
+    color: #324056;
+    margin-bottom: 20px;
+}
+
+/* Form Elements */
+.contact-form form label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #324056;
+    font-weight: bold;
+}
+
+.contact-form form input,
+.contact-form form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: #fff5ec;
+}
+
+.contact-form form button {
+    padding: 10px 20px;
+    background-color: #6f8693;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.contact-form form button:hover {
+    background-color: #5b6f7b;
+}
+
+/* Social Platforms */
+.contact-info {
+    width: 45%;
+    text-align: center;
+}
+
+.social-heading {
+    color: #f2573e;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: #324056;
+    font-size: 1rem;
+}
+
+.social-icons img {
+    width: 30px;
+    margin-bottom: 10px;
+}
+
+/* Call to Action */
+.call-to-action {
+    color: #f2573e;
+}
+
+.call-to-action h3 {
+    font-size: 1.5rem;
+}
+
+.call-to-action p {
+    font-size: 1.2rem;
+}
+
+.call-to-action img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+
+        </style>
+                <body>
+                    <header class="afacad-light" style="color:#2D3B66; font-size: 24px;"> 
+                        <nav class="navbar">
+                            <div class="logo">
+                                <img src="C:\Users\LENOVO\Desktop\HTML\Portfolio\logo.png" width="40px" style="margin-left: 50px;">
+                            </div>
+                            <ul class="nav-links" style="margin-right: 80px;">
+                                <li><a href="#">Projects</a></li>
+                                <li><a href="#">About me</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Gallery</a></li>
+                                
+                            </ul>
+                            <div class="hamburger">
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </div>
+                        </nav>
+                    </header>
+                    <section class="contact-section">
+                        <div class="contact-form">
+                            <h2 class="form-heading">Let's chat.</h2>
+                            <p class="form-subheading">I won't judge, promise.</p>
+                            <form action="#" method="post">
+                                <label for="name">Your pretty name</label>
+                                <input type="text" id="name" name="name" placeholder="Your pretty name">
+                                
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Email">
+
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Message"></textarea>
+
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div>
+
+                        <div class="contact-info">
+                            <h3 class="social-heading">Social platforms</h3>
+                            <div class="social-icons">
+                                <a href="#"><img src="behance-icon.png" alt="Behance"> Behance</a>
+                                <a href="#"><img src="twitter-icon.png" alt="Twitter"> Twitter</a>
+                                <a href="#"><img src="instagram-icon.png" alt="Instagram"> Instagram</a>
+                            </div>
+                            <div class="call-to-action">
+                                <h3>Or just give a ring!</h3>
+                                <p><img src="phone-icon.png" alt="Phone"> +91 73490 24333</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="about-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <p class="toggle-text">Click to see <br>the other me!</p>
+                    </div>
+
+
+                    <script>
+                        // Add an event listener to the checkbox
+                        document.getElementById("about-toggle").addEventListener("change", function() {
+                            if (this.checked) {
+                                // Redirect to a different HTML file when checked
+                                window.location.href = "about_me copy.html"; // Change this to your target HTML file
+                            } else {
+                                // Optionally, redirect back or do nothing
+                                window.location.href = "contact.html"; // Change this to your original HTML file if needed
+                            }
+                        });
+                    </script>
+                </body>
+                </html>
